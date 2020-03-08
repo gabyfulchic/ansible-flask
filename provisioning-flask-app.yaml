@@ -1,0 +1,5 @@
+- name: Provisioning Flask App
+  hosts: all
+  become: true
+  roles:
+    - flask
