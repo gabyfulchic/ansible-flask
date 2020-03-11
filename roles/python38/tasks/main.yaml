@@ -1,0 +1,44 @@
+---
+- name: Update package manager "Debian"
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Update package manager "CentOS"
+  yum:
+    name: "*"
+    state: latest
+    update_cache: yes
+  when: ansible_distribution == 'Centos' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install Development Tools
+  shell: |
+    yum -y groupinstall "Development Tools"
+
+- name: Install dependencies to build python for "CentOS"
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - "{{ dependencies_development_tools_list }}"
+
+- name: Get python archive 
+  get_url:
+    url: "{{ python_archive_url }}"
+    dest: "{{ python_archive_dest }}"
+
+- name: Extract python archive
+  unarchive:
+    src: "{{ python_archive_dest }}"
+    dest: "/tmp/{{ python_archive_name }}"
+
+- name: Build and Install Python
+  shell: |
+    cd /tmp/Python-3.8.2
+    ./configure --enable-optimizations
+    make altinstall
+    python3.8 --version
+    pip3.8 --version
