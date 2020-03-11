@@ -24,6 +24,7 @@
     update_cache: yes
   loop:
     - "{{ dependencies_development_tools_list }}"
+  when: ansible_distribution == 'Centos' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: Get python archive 
   get_url:

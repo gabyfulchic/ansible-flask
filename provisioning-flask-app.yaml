@@ -1,5 +1,6 @@
 - name: Provisioning Flask App
-  hosts: all
+  hosts: flask
   become: true
   roles:
+    - python38
     - flask

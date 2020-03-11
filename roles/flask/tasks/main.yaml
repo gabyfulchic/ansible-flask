@@ -1,0 +1,31 @@
+---
+- name: Upgrade pip 
+  pip:
+    name: pip
+    state: latest
+
+- name: Send requirements.txt  
+  template:
+    src: requirements.j2
+    dest: "{{ requirement_path }}"
+
+- name: Install pip dependencies for my Flask project
+  pip:
+    requirements: "{{ requirement_path }}"
+
+- name: Ensure project path exist
+  file:
+    path: "{{ flask_project_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Clone Flask project
+  git:
+    repo: https://github.com/gabyfulchic/search-morty.git 
+    dest: "{{ flask_project_path }}" 
+    clone: yes
+
+- name: Launch the Flask Project
+  script: "{{ flask_project_path }}/main.py
