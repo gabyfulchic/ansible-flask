@@ -3,6 +3,7 @@
   pip:
     name: pip
     state: latest
+    executable: pip3
 
 - name: Send requirements.txt  
   template:
@@ -12,6 +13,7 @@
 - name: Install pip dependencies for my Flask project
   pip:
     requirements: "{{ requirement_path }}"
+    executable: pip3
 
 - name: Ensure project path exist
   file:
