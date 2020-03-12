@@ -3,6 +3,9 @@ dependencies_development_tools_list:
   - bzip2-devel
   - libffi-devel
   - wget
+  - git
+  - vim
+  - yum-utils
 python_archive_name: Python-3.8.2
 python_archive_dest: /tmp/Python-3.8.2.tgz
 python_archive_url: https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz
