@@ -20,6 +20,3 @@
 ```bash
 ansible-playbook -i inventory.ini --diff provisioning-flask-app.yaml
 ```
-
-
-

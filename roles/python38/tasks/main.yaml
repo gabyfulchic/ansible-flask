@@ -16,6 +16,7 @@
 - name: Install Development Tools
   shell: |
     yum -y groupinstall "Development Tools"
+  when: ansible_distribution == 'Centos' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: Install dependencies to build python for "CentOS"
   yum:
@@ -26,20 +27,71 @@
     - "{{ dependencies_development_tools_list }}"
   when: ansible_distribution == 'Centos' or ansible_distribution == 'Red Hat Enterprise Linux'
 
-- name: Get python archive 
-  get_url:
-    url: "{{ python_archive_url }}"
-    dest: "{{ python_archive_dest }}"
+- name: Install Python3 for "CentOS"
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - "{{ python3_rhel_pkg_list }}"
+  when: ansible_distribution == 'Centos' or ansible_distribution == 'Red Hat Enterprise Linux'
 
-- name: Extract python archive
-  unarchive:
-    src: "{{ python_archive_dest }}"
-    dest: "/tmp/{{ python_archive_name }}"
+- name: Install Python3 for "Debian"
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - "{{ python3_deb_pkg_list }}"
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: Build and Install Python
-  shell: |
-    cd /tmp/Python-3.8.2
-    ./configure --enable-optimizations
-    make altinstall
-    python3.8 --version
-    pip3.8 --version
+######
+# To use to install python : from source || pythonz
+######
+
+#- name: Pythonz Part if "pythonz true", default "false"
+#  block:
+#    - name: Validate that Pythonz is not already installed
+#      command: which pythonz
+#      register: pythonz_installed
+#    
+#    - name: Get Pythonz "https://github.com/saghul/pythonz"
+#      shell: curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
+#      when:
+#        - pythonz_installed.rc != 0
+#      
+#    - name: Add setup on bashrc for pythonz
+#      shell: |
+#        cat "[[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc" >> ~/.bashrc
+#        source ~/.bashrc
+#      when:
+#        - pythonz_installed.rc != 0
+#    
+#    - name: Install Python with Pythonz
+#      shell: pythonz install --url {{ python_archive_url }} {{ python_version }}
+#  when:
+#    - pythonz
+#
+#- name: Install Python from source if "python_from_source true", default "false"
+#  block:
+#    - name: Prepare directory to receive archive
+#      file:
+#        state: directory
+#        path: "/tmp/{{ python_archive_name }}"
+#        owner: root
+#        group: root
+#        mode: '0755'
+#  
+#    - name: Get and Extract python archive
+#      unarchive:
+#        src: "{{ python_archive_url }}"
+#        dest: "/tmp/{{ python_archive_name }}"
+#        remote_src: yes
+#    
+#    - name: Build and Install Python
+#      script: "{{ python_compile_script_name }}"
+#      args:
+#        chdir: "/tmp/{{ python_archive_name }}/" 
+#        executable: /bin/bash
+#  when:
+#    - python_from_source

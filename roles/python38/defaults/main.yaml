@@ -6,6 +6,28 @@ dependencies_development_tools_list:
   - git
   - vim
   - yum-utils
-python_archive_name: Python-3.8.2
-python_archive_dest: /tmp/Python-3.8.2.tgz
-python_archive_url: https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz
+  - curl
+python3_deb_pkg_list:
+  - python3
+  - python3-pip
+  - python3-dev
+  - build-essential
+  - libssl-dev
+  - libffi-dev
+python3_rhel_pkg_list:
+  - python3
+  - python3-pip
+  - python3-devel
+
+#####
+## Python : from source || pythonz variables
+#####
+
+#python_version: 3.8.2
+#python_archive_name: "Python-{{ python_version }}"
+#python_archive_dest: "/tmp/Python-{{ python_version }}.tgz"
+#python_compile_script_name: compile_python_3-8-2.sh
+#python_compile_script_path: /tmp/compile_python_3-8-2.sh
+#python_archive_url: "https://www.python.org/ftp/python/3.8.2/Python-{{ python_version }}.tgz"
+#pythonz: false
+#python_from_source: false
