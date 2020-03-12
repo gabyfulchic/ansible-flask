@@ -28,4 +28,7 @@
     clone: yes
 
 - name: Launch the Flask Project
-  script: "{{ flask_project_path }}/main.py
+  environment:
+    FLASK_APP: "{{ flask_project_path }}/main.py"
+  shell: |
+    flask run
