@@ -1,12 +1,13 @@
-# Ansible role for Flask Apps
-
+# Ansible role to deploy a Flask project.  
+![ansible-software-version](https://img.shields.io/badge/ansible-v2.9.6-informational)
+![flask-software-version](https://img.shields.io/badge/Flask-1.1.1-important)
+  
 ## Description
   
-- Update pkg manager
-- Install python & dependencies
-- Install Pypi pkgs following variables
-- Create virtualenv for your app
-- Launch it and binding port following variables
+- Install `python & dependencies`
+- Install `Pypi pkgs` following requirements file
+- Setup `env vars`
+- Launch project using `flask run`
   
 ## Dependencies
   
