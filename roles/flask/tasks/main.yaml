@@ -6,9 +6,12 @@
     executable: pip3
 
 - name: Send requirements.txt  
-  template:
-    src: requirements.j2
+  copy:
+    src: requirements.txt
     dest: "{{ requirement_path }}"
+    owner: root
+    group: root
+    mode: '0755'
 
 - name: Install pip dependencies for my Flask project
   pip:

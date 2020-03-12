@@ -18,5 +18,17 @@
 ## Getting Started  
 
 ```bash
-ansible-playbook -i inventory.ini --diff provisioning-flask-app.yaml
+Run >  
+ansible-playbook -i inventory.ini provisioning-flask-app.yaml  
+No Host Key Check >  
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.ini provisioning-flask-app.yaml  
+```
+  
+## Debug
+  
+```bash
+Dry-run >  
+ansible-playbook --check --diff -i inventory.ini provisioning-flask-app.yaml  
+Verbose mode >  
+ansible-playbook -vvv --diff -i inventory.ini provisioning-flask-app.yaml  
 ```
