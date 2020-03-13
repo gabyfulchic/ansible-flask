@@ -1,3 +1,4 @@
+---
 dependencies_development_tools_list:
   - openssl-devel
   - bzip2-devel
@@ -24,12 +25,11 @@ python3_rhel_pkg_list:
 #####
 ## Python : from source || pythonz variables
 #####
-
-#python_version: 3.8.2
-#python_archive_name: "Python-{{ python_version }}"
-#python_archive_dest: "/tmp/Python-{{ python_version }}.tgz"
-#python_compile_script_name: compile_python_3-8-2.sh
-#python_compile_script_path: /tmp/compile_python_3-8-2.sh
-#python_archive_url: "https://www.python.org/ftp/python/3.8.2/Python-{{ python_version }}.tgz"
-#pythonz: false
-#python_from_source: false
+# python_version: 3.8.2
+# python_archive_name: "Python-{{ python_version }}"
+# python_archive_dest: "/tmp/Python-{{ python_version }}.tgz"
+# python_compile_script_name: compile_python_3-8-2.sh
+# python_compile_script_path: /tmp/compile_python_3-8-2.sh
+# python_archive_url: "https://www.python.org/ftp/python/3.8.2/Python-{{ python_version }}.tgz"
+# pythonz: false
+# python_from_source: false

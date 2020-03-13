@@ -1,11 +1,11 @@
 ---
-- name: Upgrade pip 
+- name: Upgrade pip
   pip:
     name: pip
     state: latest
     executable: pip3
 
-- name: Send requirements.txt  
+- name: Send requirements.txt
   copy:
     src: requirements.txt
     dest: "{{ requirement_path }}"
@@ -28,9 +28,9 @@
 
 - name: Clone Flask project
   git:
-    repo: https://github.com/gabyfulchic/search-morty.git 
-    dest: "{{ flask_project_path }}" 
-    clone: yes
+    repo: https://github.com/gabyfulchic/search-morty.git
+    dest: "{{ flask_project_path }}"
+    clone: true
 
 - name: Launch the Flask Project
   environment:

@@ -1,25 +1,28 @@
 ---
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
+lint:
+  name: yamllint
+  options:
+    config-file: .yamllint
 platforms:
   - name: docker_centos7
-    image: 
+    image: jrei/systemd-centos:7
     privileged: true
 provisioner:
   name: ansible
   playbooks:
-    converge: converge.yaml
+    converge: ../../converge.yaml
   inventory:
     links:
       host_vars: ../../host_vars
+  lint:
+    name: ansible-lint
+  log: true
+scenario:
+  name: default
 verifier:
   name: testinfra
   directory: ../../tests
   lint:
     name: flake8
-
-

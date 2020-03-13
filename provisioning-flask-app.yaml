@@ -1,3 +1,4 @@
+---
 - name: Provisioning Flask App
   hosts: flask
   become: true
