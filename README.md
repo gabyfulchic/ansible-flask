@@ -15,6 +15,7 @@
 - `python3.8-pip`
 - `pip install --upgrade pip`
 - `pip install -r requirements.txt`
+- `certbot certonly --standalone` for your domain & fill `roles/flask/defaults/main.yaml` with it.
 
 ## Getting Started  
 

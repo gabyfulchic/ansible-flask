@@ -34,6 +34,6 @@
 
 - name: Launch the Flask Project
   environment:
-    FLASK_APP: "{{ flask_project_path }}/main.py"
+    FLASK_APP: "{{ flask_project_path }}/app/routes.py"
   shell: |
-    flask run
+    flask run -h 0.0.0.0 -p 443 --cert={{ cert_path }} --key={{ key_path }}
