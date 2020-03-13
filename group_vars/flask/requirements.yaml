@@ -2,3 +2,4 @@ requirement_list:
   - ramapi
   - flask
   - pytest
+  - wtforms
