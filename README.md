@@ -26,6 +26,13 @@ No Host Key Check >
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.ini provisioning-flask-app.yaml  
 ```
   
+## Test the project
+  
+```bash
+pip install molecule==2.22
+molecule test
+```
+
 ## Debug
   
 ```bash

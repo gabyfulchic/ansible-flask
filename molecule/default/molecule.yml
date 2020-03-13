@@ -1,0 +1,25 @@
+---
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: docker_centos7
+    image: 
+    privileged: true
+provisioner:
+  name: ansible
+  playbooks:
+    converge: converge.yaml
+  inventory:
+    links:
+      host_vars: ../../host_vars
+verifier:
+  name: testinfra
+  directory: ../../tests
+  lint:
+    name: flake8
+
+
