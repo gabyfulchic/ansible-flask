@@ -6,7 +6,7 @@ lint:
   options:
     config-file: .yamllint
 platforms:
-  - name: docker_centos7
+  - name: docker-centos7
     image: jrei/systemd-centos:7
     dockerfile: Dockerfile.j2
     privileged: true
@@ -18,8 +18,9 @@ provisioner:
     links:
       host_vars: ../../host_vars
   log: true
-scenario:
-  name: default
+  lint:
+    name: ansible-lint
+    enabled: false
 verifier:
   name: testinfra
   directory: ../../tests
