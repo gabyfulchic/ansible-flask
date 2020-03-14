@@ -32,8 +32,18 @@
     dest: "{{ flask_project_path }}"
     clone: true
 
-- name: Launch the Flask Project
+- name: Launch the Flask Project in local
   environment:
     FLASK_APP: "{{ flask_project_path }}/app/routes.py"
   shell: |
-    flask run -h 0.0.0.0 -p 443 --cert={{ cert_path }} --key={{ key_path }}
+    flask run -h 127.0.0.1 -p 80
+  when:
+    - project == "local"
+
+- name: Expose the Flask Project on Https
+  environment:
+    FLASK_APP: "{{ flask_project_path }}/app/routes.py"
+  shell: |
+    flask run -h 0.0.0.0 -p 443--cert={{ cert_path }} --key={{ key_path }}
+  when:
+    - project == "exposed"

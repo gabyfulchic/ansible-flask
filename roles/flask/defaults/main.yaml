@@ -1,5 +1,6 @@
 ---
 requirement_path: /tmp/requirements.txt
 flask_project_path: /usr/share/search-morty
+project: "local"
 cert_path: /etc/letsencrypt/crt
 key_path: /etc/letsencrypt/key
