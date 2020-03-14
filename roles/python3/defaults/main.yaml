@@ -4,13 +4,13 @@ centos_development_tools_pkgs:
   - openssl-devel
   - bzip2-devel
   - libffi-devel
+  - epel-release
 centos_base_pkgs:
   - wget
   - git
   - vim
   - yum-utils
   - curl
-  - epel-release
   - certbot
 python3_deb_pkgs:
   - python3
