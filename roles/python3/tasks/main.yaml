@@ -1,48 +1,38 @@
 ---
-- name: Update package manager "Debian"
-  apt:
-    name: "*"
-    state: latest
-    update_cache: true
-  when: ansible_facts['distribution'] == 'Debian' or ansible_facts['distribution'] == 'Ubuntu'
-
-- name: Update package manager "CentOS"
-  yum:
-    name: "*"
-    state: latest
-    update_cache: true
-  when: ansible_facts['distribution'] == 'CentOS' or ansible_facts['distribution'] == 'RedHat'
-
-- name: Install Development Tools
-  shell: |
-    yum -y groupinstall "Development Tools"
-  when: ansible_facts['distribution'] == 'CentOS' or ansible_facts['distribution'] == 'RedHat'
-
-- name: Install dependencies to build python for "CentOS"
+- name: Install dependencies
   yum:
     name: "{{ item }}"
     state: present
     update_cache: true
   loop:
-    - "{{ dependencies_development_tools_list }}"
+    - "{{ centos_development_tools_pkgs }}"
   when: ansible_facts['distribution'] == 'CentOS' or ansible_facts['distribution'] == 'RedHat'
 
-- name: Install Python3 for "CentOS"
+- name: Install base pkgs
   yum:
     name: "{{ item }}"
     state: present
     update_cache: true
   loop:
-    - "{{ python3_rhel_pkg_list }}"
+    - "{{ centos_base_pkgs }}"
   when: ansible_facts['distribution'] == 'CentOS' or ansible_facts['distribution'] == 'RedHat'
 
-- name: Install Python3 for "Debian"
+- name: Install Python3
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  loop:
+    - "{{ python3_rhel_pkgs }}"
+  when: ansible_facts['distribution'] == 'CentOS' or ansible_facts['distribution'] == 'RedHat'
+
+- name: Install Python3
   apt:
     name: "{{ item }}"
     state: present
     update_cache: true
   loop:
-    - "{{ python3_deb_pkg_list }}"
+    - "{{ python3_deb_pkgs }}"
   when: ansible_facts['distribution'] == 'Debian' or ansible_facts['distribution'] == 'Ubuntu'
 
 ######
