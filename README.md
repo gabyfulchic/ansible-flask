@@ -1,6 +1,7 @@
 # Ansible role to deploy a Flask project.  
 ![ansible-software-version](https://img.shields.io/badge/ansible-v2.9.6-informational)
-![flask-software-version](https://img.shields.io/badge/Flask-1.1.1-important)
+![flask-software-version](https://img.shields.io/badge/Flask-v1.1.1-important)
+![molecule-software-version](https://img.shields.io/badge/Molecule-v2.22-lightgrey)
   
 ## Description
   
