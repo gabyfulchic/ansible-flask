@@ -21,6 +21,20 @@ provisioner:
   lint:
     name: ansible-lint
     enabled: false
+scenario:
+  name: default
+  test_sequence:
+    - lint
+    - dependency
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - verify
+    - cleanup
+    - destroy
 verifier:
   name: testinfra
   directory: ../../tests
